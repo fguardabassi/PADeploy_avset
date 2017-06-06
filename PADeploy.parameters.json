@@ -1,0 +1,162 @@
+{
+   "$schema" : "https://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json#",
+   "contentVersion" : "1.0.0.0",
+   "parameters" : {
+      "location" : {
+         "type" : "string",
+         "defaultValue" : "eastus2",
+         "allowedValues" : [ "eastus2", "westus" , "southeastasia" ],
+         "metadata" : {
+            "description" : "region of resources"
+         }
+      },
+      "newStorageAccount" : {
+         "type" : "string",
+         "metadata" : {
+            "description" : "Globally unique lowercase name of your storage account"
+         }
+      },
+      "storageAccountType" : {
+         "type" : "string",
+         "metadata" : {
+            "description" : "The type of the Storage Account created"
+         },
+         "defaultValue" : "Standard_LRS"
+      },
+      "storageAccountNewOrExisting" : {
+         "type" : "string",
+         "defaultValue" : "new",
+         "allowedValues" : [ "new", "existing" ],
+         "metadata" : {
+            "Description" : "Indicates whether the Storage Account is new or existing"
+         }
+      },
+      "existingStorageAccountRG" : {
+         "type" : "string",
+         "defaultValue" : "",
+         "metadata" : {
+            "description" : "Storage Resource Group of the Existing VM."
+         }
+      },
+      "vmName" : {
+         "type" : "string",
+         "metadata" : {
+            "description" : "Name of VM-Series VM in the Azure portal"
+         }
+      },
+      "adminUserName" : {
+         "type" : "string",
+         "metadata" : {
+            "description" : "Username for VM-Series administrator"
+         }
+      },
+      "adminPassword" : {
+         "type" : "securestring",
+         "defaultValue" : "<YOUR PASSWORD>",
+         "metadata" : {
+            "description" : "Password for VM-Series administrator"
+         }
+      },
+      "authenticationType" : {
+         "type" : "string",
+         "metadata" : {
+            "descritpion" : "Type of authentication "
+         },
+         "allowedValues" : [ "password" ],
+         "defaultValue" : "password"
+      },
+      "imageVersion" : {
+         "type" : "string",
+         "defaultValue" : "latest",
+         "allowedValues" : [ "7.1.1", "8.0.0" ],
+         "metadata" : {
+            "description" : "PAN-OS version."
+         }
+      },
+      "imageSku" : {
+         "type" : "string",
+         "defaultValue" : "byol",
+         "allowedValues" : [ "byol" ],
+         "metadata" : {
+            "description" : "VM-Series model: BYOL or hourly pay-as-you-go (PAYG): Bundle 1 or Bundle 2"
+         }
+      },
+      "vmSize" : {
+         "type" : "string",
+         "allowedValues" : [ "Standard_D3", "Standard_D3_v2" ],
+         "metadata" : {
+            "description" : "Azure VM size for VM-Series"
+         }
+      },
+      "availabilitySetName" : {
+         "type" : "string",
+         "defaultValue" : "VMSeriesFwAvSet",
+         "metadata" : {
+            "description" : "Azure Availability Set for VM-Series firewalls"
+         }
+      },
+      "baseUrl" : {
+         "type" : "string",
+         "metadata" : {
+            "artifactsBaseUrl" : ""
+         },
+         "defaultValue" : "https://raw.githubusercontent.com/fguardabassi/PADeploy_avset/master/"
+      },
+      "virtualNetworkName" : {
+         "type" : "string",
+         "metadata" : {
+            "description" : "Name of the virtual network that the consumer wants to use"
+         },
+         "defaultValue" : "panVnet"
+      },
+      "subnet0Name" : {
+         "type" : "string",
+         "defaultValue" : "Subnet-DMZ-Service",
+         "metadata" : {
+            "description" : "Subnet for the Mgmt"
+         }
+      },
+      "subnet1Name" : {
+         "type" : "string",
+         "defaultValue" : "Subnet-DMZ-Untrust",
+         "metadata" : {
+            "description" : "Subnet for the Untrust"
+         }
+      },
+      "subnet2Name" : {
+         "type" : "string",
+         "defaultValue" : "Subnet-DMZ-Trust",
+         "metadata" : {
+            "description" : "Subnet for the Trust"
+         }
+      },
+      "subnet0StartAddress" : {
+         "type" : "string",
+         "defaultValue" : "10.200.6.7",
+         "metadata" : {
+            "description" : "Mgmt subnet start address"
+         }
+      },
+      "subnet1StartAddress" : {
+         "type" : "string",
+         "defaultValue" : "10.200.6.135",
+         "metadata" : {
+            "description" : "Untrust subnet start address"
+         }
+      },
+      "subnet2StartAddressNic1" : {
+         "type" : "string",
+         "defaultValue" : "10.200.6.26",
+         "metadata" : {
+            "description" : "Trust subnet start address"
+         }
+      },
+      "subnet2StartAddressNic2" : {
+         "type" : "string",
+         "defaultValue" : "10.200.6.27",
+         "metadata" : {
+            "description" : "Trust subnet start address"
+         }
+      }
+   }
+}
